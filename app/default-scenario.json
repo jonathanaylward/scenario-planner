@@ -1,0 +1,20 @@
+{
+  "income": 5000,
+  "fixedCosts": [
+    { "id": "f1", "name": "Rent / Mortgage", "cost": 1500.00 },
+    { "id": "f2", "name": "Car Payment", "cost": 400.00 },
+    { "id": "f3", "name": "Utilities (Water, Gas, Electric)", "cost": 250.00 },
+    { "id": "f4", "name": "Internet & Phone", "cost": 120.00 },
+    { "id": "f5", "name": "Health Insurance", "cost": 200.00 },
+    { "id": "f6", "name": "Auto & Renters Insurance", "cost": 130.00 },
+    { "id": "f7", "name": "Groceries", "cost": 600.00 }
+  ],
+  "expenses": [
+    { "id": "e1", "name": "Annual Gym Membership", "cost": 500, "month": "January", "category": "Health", "active": false },
+    { "id": "e2", "name": "Summer Vacation", "cost": 1200, "month": "July", "category": "Travel", "active": false },
+    { "id": "e3", "name": "Holiday Gifts", "cost": 600, "month": "December", "category": "Misc", "active": false },
+    { "id": "e4", "name": "New Laptop", "cost": 1000, "month": "October", "category": "Tech", "active": false },
+    { "id": "e5", "name": "Concert Tickets", "cost": 150, "month": "September", "category": "Entertainment", "active": false },
+    { "id": "e6", "name": "Patio Furniture", "cost": 450, "month": "May", "category": "Home", "active": false }
+  ]
+}
