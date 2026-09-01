@@ -1,4 +1,6 @@
 {
+  "startingCash": 0,
+  "ccDebt": 0,
   "income": 5000,
   "fixedCosts": [
     { "id": "f1", "name": "Rent / Mortgage", "cost": 1500.00 },
