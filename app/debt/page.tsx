@@ -2,10 +2,15 @@
 
 import { useState, useEffect } from "react";
 
-const calendarMonths = [
-  "September", "October", "November", "December", "January", "February",
-  "March", "April", "May", "June", "July", "August"
+const ALL_MONTHS = [
+  "January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
 ];
+
+function getNext12Months(date = new Date()): string[] {
+  const currentMonthIndex = date.getMonth();
+  return Array.from({ length: 12 }, (_, i) => ALL_MONTHS[(currentMonthIndex + i) % 12]);
+}
 
 export default function DebtEngine() {
   const [balance, setBalance] = useState<number>(0);
@@ -14,6 +19,7 @@ export default function DebtEngine() {
   const [autoImported, setAutoImported] = useState<boolean>(false);
 
   useEffect(() => {
+    const calendarMonths = getNext12Months(new Date());
     const saved = localStorage.getItem("scenario-planner-v7");
     if (saved) {
       try {
