@@ -7,17 +7,24 @@ type FixedCost = { id: string; name: string; cost: number };
 type Expense = { id: string; name: string; cost: number; month: string; category: string; active: boolean };
 type AppData = { startingCash: number; ccDebt: number; income: number; fixedCosts: FixedCost[]; expenses: Expense[] };
 
-const calendarMonths = [
-  "September", "October", "November", "December", "January", "February",
-  "March", "April", "May", "June", "July", "August"
+const ALL_MONTHS = [
+  "January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
 ];
+
+function getNext12Months(date = new Date()): string[] {
+  const currentMonthIndex = date.getMonth();
+  return Array.from({ length: 12 }, (_, i) => ALL_MONTHS[(currentMonthIndex + i) % 12]);
+}
 
 export default function ScenarioPlanner() {
   const [data, setData] = useState<AppData>({ ...defaultData, startingCash: defaultData.startingCash || 0, ccDebt: defaultData.ccDebt || 0 });
   const [isLoaded, setIsLoaded] = useState(false);
+  const [calendarMonths, setCalendarMonths] = useState<string[]>(() => getNext12Months());
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
+    setCalendarMonths(getNext12Months(new Date()));
     const saved = localStorage.getItem("scenario-planner-v7");
     if (saved) {
       setData(JSON.parse(saved));
@@ -48,7 +55,7 @@ export default function ScenarioPlanner() {
   };
 
   const addExpense = () => {
-    setData((prev) => ({ ...prev, expenses: [...prev.expenses, { id: "e" + Date.now(), name: "New Expense", cost: 0, month: "September", category: "Misc", active: true }] }));
+    setData((prev) => ({ ...prev, expenses: [...prev.expenses, { id: "e" + Date.now(), name: "New Expense", cost: 0, month: calendarMonths[0], category: "Misc", active: true }] }));
   };
 
   const deleteExpense = (id: string) => {
